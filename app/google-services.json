@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "891111432537",
+    "project_id": "animelist-app-26086",
+    "storage_bucket": "animelist-app-26086.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:891111432537:android:b19e624927a8119a65ac48",
+        "android_client_info": {
+          "package_name": "com.bhavani.animelistapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "891111432537-cilikkn294puvca5ldf6rgt0epqi8srr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA3zwC31DCCRCnQwu_T-8uirqm8-Bn4nBc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "891111432537-cilikkn294puvca5ldf6rgt0epqi8srr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

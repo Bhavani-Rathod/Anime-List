@@ -1,14 +1,18 @@
 package com.bhavani.animelistapp.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import com.bhavani.animelistapp.R
+import com.bhavani.animelistapp.SavedItemsActivity
 import com.bhavani.animelistapp.databinding.RvItemsBinding
 import com.bhavani.animelistapp.models.Data
+import com.google.firebase.firestore.FirebaseFirestore
 import com.squareup.picasso.Picasso
 
 class RvAdapter(private val animeList:List<Data>): RecyclerView.Adapter<RvAdapter.ViewHolder>() {
@@ -21,6 +25,18 @@ class RvAdapter(private val animeList:List<Data>): RecyclerView.Adapter<RvAdapte
                 if (position != RecyclerView.NO_POSITION) {
                     val currentItem = animeList[position]
                     showReadMoreDialog(binding.root.context, currentItem)
+                }
+            }
+
+            binding.saveBtn.setOnClickListener {
+                val position = adapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    val currentItem = animeList[position]
+                    val intent =
+                        Intent(binding.root.context, SavedItemsActivity::class.java).apply {
+                            putExtra("SAVED_ITEM", currentItem)
+                        }
+                    binding.root.context.startActivity(intent)
                 }
             }
         }
@@ -40,6 +56,27 @@ class RvAdapter(private val animeList:List<Data>): RecyclerView.Adapter<RvAdapte
 
         val alertDialog = builder.create()
         alertDialog.show()
+    }
+
+    private fun saveItemToFirestore(context: Context, item: Data) {
+        val db = FirebaseFirestore.getInstance()
+        val collectionRef = db.collection("saved_anime_items") // Create or use your own collection name
+
+        collectionRef.add(item)
+            .addOnSuccessListener { documentReference ->
+                Toast.makeText(
+                    context,
+                    "Item saved to Firestore with ID: ${documentReference.id}",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+            .addOnFailureListener { e ->
+                Toast.makeText(
+                    context,
+                    "Error saving item to Firestore: ${e.message}",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

@@ -9,6 +9,7 @@
     <string name="save">Save</string>
     <string name="read_more">Read More</string>
     <string name="year">Year</string>
-    <string name="about_anime">About anime...</string>
+    <string name="about_anime">About anime…</string>
     <string name="saved">Saved</string>
+    <string name="favouritesbtn">favouritesBtn</string>
 </resources>

@@ -183,14 +183,14 @@
 
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="wrap_content"
-                    android:layout_height="48dp"
+                    android:layout_height="30dp"
                     android:layout_margin="5dp"
                     android:layout_weight="1">
 
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/readMoreBtn"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="48dp"
                         android:background="@color/white"
                         android:text="@string/read_more"
                         android:textAllCaps="false"/>

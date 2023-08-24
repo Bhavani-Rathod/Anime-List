@@ -1,7 +1,14 @@
 package com.bhavani.animelistapp.models
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class Webp(
-    val image_url: String,
-    val large_image_url: String,
-    val small_image_url: String
-)
+    val image_url: String?,
+    val large_image_url: String?,
+    val small_image_url: String?
+) : Parcelable {
+    // Add a no-argument constructor
+    constructor() : this("", "", "")
+}

@@ -1,5 +1,6 @@
 package com.bhavani.animelistapp
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -9,6 +10,7 @@ import com.bhavani.animelistapp.adapter.RvAdapter
 import com.bhavani.animelistapp.databinding.ActivityMainBinding
 import com.bhavani.animelistapp.models.Data
 import com.bhavani.animelistapp.utils.RetrofitInstance
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -27,6 +29,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        FirebaseFirestore.getInstance()
+
+        binding.favouritesBtn.setOnClickListener {
+            val intent = Intent(this@MainActivity,SavedItemsActivity::class.java)
+            startActivity(intent)
+        }
 
         GlobalScope.launch(Dispatchers.IO){
             val response = try {
