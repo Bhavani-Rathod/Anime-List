@@ -85,12 +85,12 @@ class RvAdapter(private var animeList:List<Data>): RecyclerView.Adapter<RvAdapte
             tvRating.text = currentItem.rating
             tvEpisodes.text = currentItem.episodes.toString()
             if (currentItem.episodes==null){
-                tvEpisodes.text = 0.toString()
+                tvEpisodes.text = 12.toString()
             }
 
             tvYear.text = currentItem.year.toString()
             if (currentItem.year==null){
-                tvYear.text = 0.toString()
+                tvYear.text = 2000.toString()
             }
             tvStatus.text = currentItem.status
             Picasso.get().load(currentItem.images.jpg.image_url).into(imageView)
