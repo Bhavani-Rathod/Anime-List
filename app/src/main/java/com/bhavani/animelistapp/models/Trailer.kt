@@ -11,6 +11,6 @@ data class Trailer(
     val url: String?,
     val youtube_id: String?
 ) : Parcelable {
-    // Add a no-argument constructor
+    // a no-argument constructor
     constructor() : this("", ImagesX("", "", "", "", ""), "", "")
 }

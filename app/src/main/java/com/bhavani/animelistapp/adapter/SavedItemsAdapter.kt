@@ -7,8 +7,6 @@ import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bhavani.animelistapp.R
-import com.bhavani.animelistapp.databinding.RvItemsBinding
-
 import com.bhavani.animelistapp.databinding.SavedItemsLayoutBinding
 import com.bhavani.animelistapp.models.Data
 import com.google.firebase.firestore.FirebaseFirestore
@@ -19,15 +17,13 @@ class SavedItemsAdapter(private val savedItemsList: List<Data>) : RecyclerView.A
     inner class ViewHolder(val binding: SavedItemsLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        // ... Other view holder setup ...
-
         fun bind(savedItem: Data) {
             binding.apply {
 
-                //Long press listener to show delete popup menu
+                //Long click listener to show delete popup menu
                 itemView.setOnLongClickListener {
                     showDeletePopupMenu(itemView.context, binding, savedItem)
-                    true // Consume the event
+                    true
                 }
             }
         }
@@ -70,7 +66,7 @@ class SavedItemsAdapter(private val savedItemsList: List<Data>) : RecyclerView.A
                 Toast.makeText(context, "Item deleted", Toast.LENGTH_SHORT).show()
 
             }
-            .addOnFailureListener { e ->
+            .addOnFailureListener {
                 Toast.makeText(
                     context,
                     "Error deleting item",

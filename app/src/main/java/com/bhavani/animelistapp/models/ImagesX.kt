@@ -11,6 +11,6 @@ data class ImagesX(
     val medium_image_url: String?,
     val small_image_url: String?
 ) : Parcelable {
-    // Add a no-argument constructor
+    // a no-argument constructor
     constructor() : this("", "", "", "", "")
 }

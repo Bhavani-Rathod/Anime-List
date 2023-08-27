@@ -10,6 +10,6 @@ data class Broadcast(
     val time: String?,
     val timezone: String?
 ) : Parcelable {
-    // Add a no-argument constructor
+    // a no-argument constructor
     constructor() : this("", "", "", "")
 }

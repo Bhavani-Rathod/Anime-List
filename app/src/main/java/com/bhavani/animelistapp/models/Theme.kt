@@ -10,6 +10,6 @@ data class Theme(
     val type: String?,
     val url: String?
 ) : Parcelable {
-    // Add a no-argument constructor
+    // a no-argument constructor
     constructor() : this(0,"", "", "")
 }

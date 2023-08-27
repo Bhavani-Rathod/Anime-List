@@ -1,7 +1,7 @@
 package com.bhavani.animelistapp.adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
@@ -14,7 +14,7 @@ import com.bhavani.animelistapp.models.Data
 import com.google.firebase.firestore.FirebaseFirestore
 import com.squareup.picasso.Picasso
 
-class RvAdapter(private val animeList:List<Data>): RecyclerView.Adapter<RvAdapter.ViewHolder>() {
+class RvAdapter(private var animeList:List<Data>): RecyclerView.Adapter<RvAdapter.ViewHolder>() {
 
     inner class ViewHolder(val binding: RvItemsBinding): RecyclerView.ViewHolder(binding.root) {
 
@@ -58,14 +58,14 @@ class RvAdapter(private val animeList:List<Data>): RecyclerView.Adapter<RvAdapte
         val collectionRef = db.collection("saved_anime_items")
 
         collectionRef.add(item)
-            .addOnSuccessListener { documentReference ->
+            .addOnSuccessListener {
                 Toast.makeText(
                     context,
                     "Added to favourites",
                     Toast.LENGTH_SHORT
                 ).show()
             }
-            .addOnFailureListener { e ->
+            .addOnFailureListener {
                 Toast.makeText(
                     context,
                     "Error adding item",
@@ -100,6 +100,12 @@ class RvAdapter(private val animeList:List<Data>): RecyclerView.Adapter<RvAdapte
 
     override fun getItemCount(): Int {
         return animeList.size
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun setFilteredList(animeList:List<Data>){
+        this.animeList = animeList
+        notifyDataSetChanged()
     }
 
 }

@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:background="@color/NavyBlue">
+    android:background="@color/NavyBlue"
+    tools:context=".MainActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolBar"
@@ -16,29 +16,53 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.5">
+        app:layout_constraintVertical_bias="0.5"
+        app:layout_constraintBottom_toTopOf="@id/SearchCardView">
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="?attr/actionBarSize"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+            android:gravity="center"
             android:text="@string/anime_list"
             android:textColor="@color/white"
             android:textSize="30sp"
-            android:textStyle="bold"
-            android:gravity="center"/>
+            android:textStyle="bold" />
 
         <ImageButton
             android:id="@+id/favouritesBtn"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:src="@drawable/favourites_btn"
-            android:background="@color/NavyBlue"
             android:layout_gravity="end"
             android:layout_marginEnd="10dp"
-            android:contentDescription="@string/favouritesbtn"/>
+            android:background="@color/NavyBlue"
+            android:contentDescription="@string/favouritesbtn"
+            android:src="@drawable/favourites_btn" />
 
     </androidx.appcompat.widget.Toolbar>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/SearchCardView"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolBar"
+        app:layout_constraintBottom_toTopOf="@id/cardView3"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginBottom="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:cardCornerRadius="8dp">
+
+        <SearchView
+            android:id="@+id/searchView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:queryHint="Search for Anime.."
+            android:iconifiedByDefault="false" />
+
+    </com.google.android.material.card.MaterialCardView>
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -65,7 +89,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolBar">
+        app:layout_constraintTop_toBottomOf="@id/SearchCardView">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"

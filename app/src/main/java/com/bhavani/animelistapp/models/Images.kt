@@ -9,6 +9,6 @@ data class Images(
     val jpg: @RawValue Jpg,
     val webp: @RawValue Webp
 ) : Parcelable {
-    // Add a no-argument constructor
+    // a no-argument constructor
     constructor() : this(Jpg("", "", ""), Webp("", "", ""))
 }

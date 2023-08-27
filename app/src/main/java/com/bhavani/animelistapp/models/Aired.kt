@@ -11,6 +11,6 @@ data class Aired(
     val string: String?,
     val to: String?
 ) : Parcelable {
-    // Add a no-argument constructor
+    //a no-argument constructor
     constructor() : this("", Prop(From(0, 0, 0), To(0, 0, 0)), "", "")
 }
