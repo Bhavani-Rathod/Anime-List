@@ -59,20 +59,7 @@ class SavedItemsActivity : AppCompatActivity() {
                     if (querySnapshot.isEmpty) {
                         // If the document doesn't exist, add it to the collection
                         collectionRef.add(savedData)
-                            .addOnSuccessListener { documentReference ->
-                                Toast.makeText(
-                                    applicationContext,
-                                    "Item saved to favourites",
-                                    Toast.LENGTH_SHORT
-                                ).show()
-                            }
-                            .addOnFailureListener { e ->
-                                Toast.makeText(
-                                    applicationContext,
-                                    "Error saving item",
-                                    Toast.LENGTH_SHORT
-                                ).show()
-                            }
+
                     } else {
                         // The document already exists in the collection
                         Toast.makeText(
@@ -90,7 +77,5 @@ class SavedItemsActivity : AppCompatActivity() {
                     ).show()
                 }
         }
-
-
     }
 }

@@ -4,12 +4,13 @@
     <string name="Title">Title</string>
     <string name="animeImg">AnimeImg</string>
     <string name="rating">Rating</string>
-    <string name="episodes">Episodes</string>
+    <string name="episodes">Episodes  -</string>
     <string name="status">Status</string>
     <string name="save">Save</string>
     <string name="read_more">Read More</string>
-    <string name="year">Year</string>
+    <string name="year">Year -</string>
     <string name="about_anime">About anime…</string>
-    <string name="saved">Saved</string>
+    <string name="favourites">Favourites</string>
     <string name="favouritesbtn">favouritesBtn</string>
+    <string name="delete">Delete</string>
 </resources>

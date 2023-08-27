@@ -9,7 +9,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import com.bhavani.animelistapp.R
-import com.bhavani.animelistapp.SavedItemsActivity
 import com.bhavani.animelistapp.databinding.RvItemsBinding
 import com.bhavani.animelistapp.models.Data
 import com.google.firebase.firestore.FirebaseFirestore
@@ -32,11 +31,7 @@ class RvAdapter(private val animeList:List<Data>): RecyclerView.Adapter<RvAdapte
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
                     val currentItem = animeList[position]
-                    val intent =
-                        Intent(binding.root.context, SavedItemsActivity::class.java).apply {
-                            putExtra("SAVED_ITEM", currentItem)
-                        }
-                    binding.root.context.startActivity(intent)
+                    saveItemToFirestore(binding.root.context, currentItem)
                 }
             }
         }
@@ -50,7 +45,7 @@ class RvAdapter(private val animeList:List<Data>): RecyclerView.Adapter<RvAdapte
 
         val builder = AlertDialog.Builder(context)
             .setView(dialogView)
-            .setPositiveButton("OK") { dialog, _ ->
+            .setPositiveButton("Close") { dialog, _ ->
                 dialog.dismiss()
             }
 
@@ -60,20 +55,20 @@ class RvAdapter(private val animeList:List<Data>): RecyclerView.Adapter<RvAdapte
 
     private fun saveItemToFirestore(context: Context, item: Data) {
         val db = FirebaseFirestore.getInstance()
-        val collectionRef = db.collection("saved_anime_items") // Create or use your own collection name
+        val collectionRef = db.collection("saved_anime_items")
 
         collectionRef.add(item)
             .addOnSuccessListener { documentReference ->
                 Toast.makeText(
                     context,
-                    "Item saved to Firestore with ID: ${documentReference.id}",
+                    "Added to favourites",
                     Toast.LENGTH_SHORT
                 ).show()
             }
             .addOnFailureListener { e ->
                 Toast.makeText(
                     context,
-                    "Error saving item to Firestore: ${e.message}",
+                    "Error adding item",
                     Toast.LENGTH_SHORT
                 ).show()
             }
@@ -89,7 +84,14 @@ class RvAdapter(private val animeList:List<Data>): RecyclerView.Adapter<RvAdapte
             tvTitle.text = currentItem.title
             tvRating.text = currentItem.rating
             tvEpisodes.text = currentItem.episodes.toString()
+            if (currentItem.episodes==null){
+                tvEpisodes.text = 0.toString()
+            }
+
             tvYear.text = currentItem.year.toString()
+            if (currentItem.year==null){
+                tvYear.text = 0.toString()
+            }
             tvStatus.text = currentItem.status
             Picasso.get().load(currentItem.images.jpg.image_url).into(imageView)
 
