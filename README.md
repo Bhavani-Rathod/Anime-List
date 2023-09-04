@@ -15,3 +15,7 @@ AniList is a feature-rich mobile app that provides anime enthusiasts with an int
 - **Search Functionality**: Looking for a specific anime? Ssearch feature lets you find animes quickly and efficiently.
 
 - **Favourites List**: Keep track of your most cherished shows all in one place, by adding animes to the favourites list.
+
+Download AniList today and explore the world of animes!
+
+[Download on Google Play](#) (https://play.google.com/store/apps/details?id=com.bhavani.animelistapp)
