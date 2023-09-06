@@ -6,6 +6,6 @@ import retrofit2.http.GET
 
 interface ApiInterface {
 
-    @GET("v4/anime")
+    @GET("v4/recommendations/anime")
     suspend fun getAnime():Response<AllAnimeData>
 }

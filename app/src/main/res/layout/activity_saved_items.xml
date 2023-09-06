@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SavedItemsActivity"
-    android:background="@color/NavyBlue">
+    android:background="@color/Blue">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
@@ -16,29 +16,29 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/NavyBlue"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/Blue"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/savedHeading"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:lineSpacingExtra="1sp"
-            android:selectAllOnFocus="false"
-            android:text="@string/favourites"
-            android:textStyle="bold"
-            android:textColor="@color/white"
-            android:textSize="30sp" />
+            <TextView
+                android:id="@+id/savedHeading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:lineSpacingExtra="1sp"
+                android:selectAllOnFocus="false"
+                android:text="@string/favourites"
+                android:textStyle="bold"
+                android:textColor="@color/LightBlue"
+                android:textSize="30sp" />
 
-    </androidx.appcompat.widget.Toolbar>
+        </androidx.appcompat.widget.Toolbar>
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -48,10 +48,9 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="12dp"
+        android:layout_marginBottom="10dp"
         android:background="@color/white"
-        app:cardBackgroundColor="@color/white"
-        app:cardCornerRadius="8dp"
+        app:cardBackgroundColor="@color/LightBlue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -61,8 +60,7 @@
             android:id="@+id/savedRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="4dp"
-            android:background="@color/white"
+            android:background="@color/LightBlue"
             tools:listitem="@layout/saved_items_layout">
 
         </androidx.recyclerview.widget.RecyclerView>

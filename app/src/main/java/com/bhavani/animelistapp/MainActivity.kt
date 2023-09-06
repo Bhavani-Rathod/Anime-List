@@ -1,6 +1,8 @@
 package com.bhavani.animelistapp
 
+import android.content.Context
 import android.content.Intent
+import android.net.ConnectivityManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -25,7 +27,6 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var rvAdapter: RvAdapter
-    private var animeList = ArrayList<Data>()
 
     @OptIn(DelicateCoroutinesApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,63 +36,82 @@ class MainActivity : AppCompatActivity() {
 
         FirebaseFirestore.getInstance()
 
-
-
         //Listener for Favourites Button
         binding.favouritesBtn.setOnClickListener {
             val intent = Intent(this@MainActivity, SavedItemsActivity::class.java)
             startActivity(intent)
         }
 
+        fun isNetworkAvailable(): Boolean {
+            val connectivityManager =
+                getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+            val networkInfo = connectivityManager.activeNetworkInfo
+            return networkInfo != null && networkInfo.isConnected
+        }
+
+
         //Response from Api
         GlobalScope.launch(Dispatchers.IO) {
-            val response = try {
-                RetrofitInstance.api.getAnime()
+            if (isNetworkAvailable()) {
+                val response = try {
+                    RetrofitInstance.api.getAnime()
 
-            } catch (e: IOException) {
-                Toast.makeText(applicationContext, "app error ${e.message}", Toast.LENGTH_SHORT)
-                    .show()
-                return@launch
-            } catch (e: HttpException) {
-                Toast.makeText(applicationContext, "http error ${e.message}", Toast.LENGTH_SHORT)
-                    .show()
-                return@launch
-            }
+                } catch (e: IOException) {
+                    Toast.makeText(applicationContext, "app error ${e.message}", Toast.LENGTH_SHORT)
+                        .show()
+                    return@launch
+                } catch (e: HttpException) {
+                    Toast.makeText(
+                        applicationContext,
+                        "http error ${e.message}",
+                        Toast.LENGTH_SHORT
+                    )
+                        .show()
+                    return@launch
+                }
 
-            if (response.isSuccessful && response.body() != null) {
-                withContext(Dispatchers.Main) {
-                    val animeList: List<Data> = response.body()!!.data
-                    binding.apply {
-                        progressBar.visibility = View.GONE
-                        rvAdapter = RvAdapter(animeList)
-                        recyclerView.adapter = rvAdapter
-                        recyclerView.layoutManager = LinearLayoutManager(this@MainActivity)
-                    }
-
-                    //SearchView
-                    binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-                        override fun onQueryTextSubmit(p0: String?): Boolean {
-                            return false
+                if (response.isSuccessful && response.body() != null) {
+                    withContext(Dispatchers.Main) {
+                        val animeList: List<Data> = response.body()!!.data
+                        binding.apply {
+                            progressBar.visibility = View.GONE
+                            rvAdapter = RvAdapter(animeList)
+                            recyclerView.adapter = rvAdapter
+                            recyclerView.layoutManager = LinearLayoutManager(this@MainActivity)
                         }
 
-                        override fun onQueryTextChange(newText: String?): Boolean {
-                            if (newText != null) {
-                                val filteredList = ArrayList<Data>()
-                                for (i in animeList) {
-                                    if (i.title?.lowercase(Locale.ROOT)?.contains(newText) == true) {
-                                        filteredList.add(i)
-                                    }
-                                    else {
-                                        rvAdapter.setFilteredList(filteredList)
+                        //SearchView
+                        binding.searchView.setOnQueryTextListener(object :
+                            SearchView.OnQueryTextListener {
+                            override fun onQueryTextSubmit(p0: String?): Boolean {
+                                return false
+                            }
+
+                            override fun onQueryTextChange(newText: String?): Boolean {
+                                if (newText != null) {
+                                    val filteredList = ArrayList<Data>()
+                                    for (i in animeList) {
+                                        if (i.entry[0].title.lowercase(Locale.ROOT)
+                                                .contains(newText)
+                                        ) {
+                                            filteredList.add(i)
+                                        } else {
+                                            rvAdapter.setFilteredList(filteredList)
+                                        }
                                     }
                                 }
+                                return true
                             }
-                            return true
-                        }
-                    })
+                        })
+                    }
+                }
+            } else {
+                // Handling when there is no internet connection
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(applicationContext, "No internet connection", Toast.LENGTH_SHORT)
+                        .show()
                 }
             }
         }
     }
-
 }

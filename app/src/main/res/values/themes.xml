@@ -4,7 +4,7 @@
     <style name="Theme.AnimeListApp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
 
         <!-- Status bar color. -->
-        <item name="android:statusBarColor">@color/NavyBlue</item>
+        <item name="android:statusBarColor">@color/Blue</item>
 
     </style>
 </resources>

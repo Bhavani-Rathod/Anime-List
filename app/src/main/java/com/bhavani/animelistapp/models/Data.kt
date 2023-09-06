@@ -3,82 +3,38 @@ package com.bhavani.animelistapp.models
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 import kotlinx.parcelize.RawValue
+import java.text.ParseException
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 @Parcelize
 data class Data(
-    val aired: @RawValue Aired,
-    val airing: Boolean,
-    val approved: Boolean,
-    val background: String?,
-    val broadcast: @RawValue Broadcast,
-    val demographics: @RawValue List<Demographic>,
-    val duration: String?,
-    val episodes: Int?,
-    val explicit_genres: @RawValue List<Any>,
-    val favorites: Int?,
-    val genres: @RawValue List<Genre>,
-    val images: @RawValue Images,
-    val licensors: @RawValue List<Licensor>,
-    val mal_id: Int?,
-    val members: Int?,
-    val popularity: Int?,
-    val producers: @RawValue List<Producer>,
-    val rank: Int?,
-    val rating: String?,
-    val score: Double,
-    val scored_by: Int?,
-    val season: String?,
-    val source: String?,
-    val status: String?,
-    val studios: @RawValue List<Studio>,
-    val synopsis: String,
-    val themes: @RawValue List<Theme>,
-    val title: String?,
-    val title_english: String?,
-    val title_japanese: String?,
-    val title_synonyms: List<String>,
-    val titles: @RawValue List<Title>,
-    val trailer: @RawValue Trailer,
-    val type: String,
-    val url: String?,
-    val year: Int?
-): Parcelable {
+    val content: String,
+    val date: String,
+    val entry: @RawValue List<Entry>,
+    val mal_id: String,
+    val user: @RawValue User
+) : Parcelable {
     constructor() : this(
-                Aired("", Prop(From(0, 0, 0), To(0, 0, 0)), "", ""),
-                false,
-                false,
-                "",
-                Broadcast("", "", "", ""),
-                emptyList(),
-                "",
-                0,
-                emptyList(),
-                0,
-                emptyList(),
-                Images(Jpg("", "", ""), Webp("", "", "")),
-                emptyList(),
-                0,
-                0,
-                0,
-                emptyList(),
-                0,
-                "",
-                0.0,
-                0,
-                "",
-                "",
-                "",
-                emptyList(),
-                "",
-                emptyList(),
-                "",
-                "",
-                "",
-                emptyList(),
-                emptyList(),
-                Trailer("", ImagesX("", "", "", "", ""), "", ""),
-                "",
-                "",
-                0
-            )
+        "",
+        "",
+        emptyList(),
+        "",
+        User("","")
+    )
+
+    // Custom property to get the formatted date
+    val formattedDate: String?
+        get() {
+            val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX", Locale.getDefault())
+            val outputFormat = SimpleDateFormat("dd MMM yyyy", Locale.getDefault())
+
+            return try {
+                val date = inputFormat.parse(date)
+                date?.let { outputFormat.format(it) }
+            } catch (e: ParseException) {
+                e.printStackTrace()
+                "Date not available"
+            }
         }
+}

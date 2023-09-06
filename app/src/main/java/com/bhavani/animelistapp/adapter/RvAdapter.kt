@@ -41,7 +41,7 @@ class RvAdapter(private var animeList:List<Data>): RecyclerView.Adapter<RvAdapte
     private fun showReadMoreDialog(context: Context, item: Data) {
         val dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_layout, null)
         val dialogTextView = dialogView.findViewById<TextView>(R.id.dialogTextView)
-        dialogTextView.text = item.synopsis
+        dialogTextView.text = item.content
 
         val builder = AlertDialog.Builder(context)
             .setView(dialogView)
@@ -81,19 +81,9 @@ class RvAdapter(private var animeList:List<Data>): RecyclerView.Adapter<RvAdapte
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val currentItem = animeList[position]
         holder.binding.apply {
-            tvTitle.text = currentItem.title
-            tvRating.text = currentItem.rating
-            tvEpisodes.text = currentItem.episodes.toString()
-            if (currentItem.episodes==null){
-                tvEpisodes.text = 12.toString()
-            }
-
-            tvYear.text = currentItem.year.toString()
-            if (currentItem.year==null){
-                tvYear.text = 2000.toString()
-            }
-            tvStatus.text = currentItem.status
-            Picasso.get().load(currentItem.images.jpg.image_url).into(imageView)
+            tvTitle.text = currentItem.entry[0].title
+            tvDate.text = currentItem.formattedDate
+            Picasso.get().load(currentItem.entry[0].images.jpg.image_url).into(imageView)
 
         }
     }

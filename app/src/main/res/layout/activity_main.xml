@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/NavyBlue"
+    android:background="@color/Blue"
     tools:context=".MainActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/NavyBlue"
+        android:background="@color/Blue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,7 +25,7 @@
             android:layout_gravity="center_horizontal"
             android:gravity="center"
             android:text="@string/anime_list"
-            android:textColor="@color/white"
+            android:textColor="@color/LightBlue"
             android:textSize="30sp"
             android:textStyle="bold" />
 
@@ -35,7 +35,7 @@
             android:layout_height="48dp"
             android:layout_gravity="end"
             android:layout_marginEnd="10dp"
-            android:background="@color/NavyBlue"
+            android:background="@color/Blue"
             android:contentDescription="@string/favouritesbtn"
             android:src="@drawable/favourites_btn" />
 
@@ -80,12 +80,11 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="6dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="6dp"
         android:layout_marginBottom="12dp"
-        android:background="@color/white"
-        app:cardBackgroundColor="@color/white"
-        app:cardCornerRadius="8dp"
+        android:background="@color/Blue"
+        app:cardBackgroundColor="@color/Blue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -96,7 +95,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="4dp"
-            android:background="@color/white"
+            android:background="@color/LightBlue"
             tools:listitem="@layout/rv_items">
 
         </androidx.recyclerview.widget.RecyclerView>

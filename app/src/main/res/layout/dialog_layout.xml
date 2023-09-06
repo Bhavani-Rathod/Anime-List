@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="16dp"
-    android:background="@color/buttonBackgroundColor">
+    android:background="@color/white">
 
     <TextView
         android:id="@+id/dialogTextView"
@@ -12,6 +12,6 @@
         android:layout_height="wrap_content"
         android:text="@string/about_anime"
         android:textColor="@color/buttonTextColor"
-        android:background="@color/buttonBackgroundColor"/>
+        android:background="@color/white"/>
 
 </LinearLayout>

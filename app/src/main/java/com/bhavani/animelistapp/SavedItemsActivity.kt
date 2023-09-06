@@ -56,11 +56,11 @@ class SavedItemsActivity : AppCompatActivity() {
             val collectionRef = db.collection("saved_anime_items")
 
             // Checking if the savedData doesn't already exist in the collection
-            collectionRef.whereEqualTo("mal_id", savedData.mal_id).get()
+            collectionRef.whereEqualTo("mal_id", savedItem.mal_id).get()
                 .addOnSuccessListener { querySnapshot ->
                     if (querySnapshot.isEmpty) {
                         // If the data doesn't exist, add it to the collection
-                        collectionRef.add(savedData)
+                        collectionRef.add(savedItem)
 
                     } else {
                         // The data already exists in the collection
@@ -71,7 +71,7 @@ class SavedItemsActivity : AppCompatActivity() {
                         ).show()
                     }
                 }
-                .addOnFailureListener { e ->
+                .addOnFailureListener {
                     Toast.makeText(
                         applicationContext,
                         "Error checking document in",

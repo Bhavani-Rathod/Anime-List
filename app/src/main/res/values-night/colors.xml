@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="buttonTextColor">@color/white</color>
-    <color name="buttonBackgroundColor">@color/black</color>
+    <color name="buttonTextColor">@color/black</color>
+    <color name="buttonBackgroundColor">#B1BCD8</color>
 
 </resources>

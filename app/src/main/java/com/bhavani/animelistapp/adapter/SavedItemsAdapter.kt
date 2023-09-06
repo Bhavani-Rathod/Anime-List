@@ -62,6 +62,7 @@ class SavedItemsAdapter(private val savedItemsList: List<Data>) : RecyclerView.A
             .addOnSuccessListener { querySnapshot ->
                 for (documentSnapshot in querySnapshot.documents) {
                     documentSnapshot.reference.delete()
+
                 }
                 Toast.makeText(context, "Item deleted", Toast.LENGTH_SHORT).show()
 
@@ -81,19 +82,9 @@ class SavedItemsAdapter(private val savedItemsList: List<Data>) : RecyclerView.A
         val currentItem = savedItemsList[position]
         holder.bind(currentItem)
         holder.binding.apply {
-            tvTitle.text = currentItem.title
-            tvRating.text = currentItem.rating
-            tvEpisodes.text = currentItem.episodes.toString()
-            if (currentItem.episodes==null){
-                tvEpisodes.text = 12.toString()
-            }
-
-            tvYear.text = currentItem.year.toString()
-            if (currentItem.year==null){
-                tvYear.text = 2000.toString()
-            }
-            tvStatus.text = currentItem.status
-            Picasso.get().load(currentItem.images.jpg.image_url).into(imageView)
+            tvTitle.text = currentItem.entry[0].title
+            tvDate.text = currentItem.formattedDate
+            Picasso.get().load(currentItem.entry[0].images.jpg.image_url).into(imageView)
 
         }
 

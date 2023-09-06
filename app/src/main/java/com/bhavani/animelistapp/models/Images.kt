@@ -5,10 +5,9 @@ import kotlinx.parcelize.Parcelize
 import kotlinx.parcelize.RawValue
 
 @Parcelize
-data class Images(
+data class  Images(
     val jpg: @RawValue Jpg,
     val webp: @RawValue Webp
 ) : Parcelable {
-    // a no-argument constructor
-    constructor() : this(Jpg("", "", ""), Webp("", "", ""))
+    constructor() : this(Jpg("","",""), Webp("","",""))
 }
