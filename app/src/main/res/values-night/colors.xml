@@ -2,6 +2,6 @@
 <resources>
 
     <color name="buttonTextColor">@color/black</color>
-    <color name="buttonBackgroundColor">#B1BCD8</color>
+    <color name="buttonBackgroundColor">#606B7C</color>
 
 </resources>

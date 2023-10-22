@@ -10,9 +10,10 @@
     <color name="Yellow">#FFC107</color>
     <color name="Grey">#C3C0C0</color>
 
-    <color name="Blue">#122E6D</color>
-    <color name="LightBlue">#B1BCD8</color>
+    <color name="NavyBlue">#292D36</color>
+    <color name="Blue">#131B31</color>
+    <color name="LightBlue">#FDD5D5D7</color>
 
     <color name="buttonTextColor">@color/black</color>
-    <color name="buttonBackgroundColor">#B1BCD8</color>
+    <color name="buttonBackgroundColor">#606B7C</color>
 </resources>

@@ -15,6 +15,15 @@
         android:theme="@style/Theme.AnimeListApp"
         tools:targetApi="31">
         <activity
+            android:name=".SplashActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".SavedItemsActivity"
             android:exported="true" />
         <activity
@@ -22,11 +31,6 @@
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.AnimeListApp">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 
