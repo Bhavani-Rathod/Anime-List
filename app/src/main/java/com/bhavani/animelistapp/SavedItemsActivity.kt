@@ -6,8 +6,8 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bhavani.animelistapp.adapter.SavedItemsAdapter
-import com.bhavani.animelistapp.databinding.ActivitySavedItemsBinding
 import com.bhavani.animelistapp.models.Data
+import com.bhavani.animelistapp.databinding.ActivitySavedItemsBinding
 import com.google.firebase.firestore.FirebaseFirestore
 
 class SavedItemsActivity : AppCompatActivity() {
